@@ -1,0 +1,45 @@
+{% extends 'Base.html' %}
+
+{% block title %}
+    <title>assignment11-outer source</title>
+{% endblock %}
+
+{% block content %}
+    {{ super() }}
+    {% set pageName= 'Outer Source' %}
+    <h1> Welcome to {{ pageName }} page </h1>
+
+    <h2> Backend users:</h2>
+    <form action="/req_backend"  method="get">
+        Please select user ID: <input name="user_id" type="number">
+        <input type="submit" name="search" value="search">
+    </form>
+
+      {% if user %}
+        <h3>Name: {{ user.data.first_name }} {{ user.data.last_name }} </h3>
+        <img src="{{ user.data.avatar }}" alt="pic"> <br>
+          <a href="mailto:${user.data.email}">Send Email</a>
+      {% endif %}
+
+    <hr>
+    <hr>
+
+    <h2> Fronted users</h2>
+    <form action="/req_frontend"  method="post">#}
+        Please select user ID: <input name="id" type="number">
+        <input type="submit" name="search" value="search">
+    </form>
+
+    {% if id  %}
+        <main >
+            <body
+                onload="getUsers({{ id }})">
+            </body>
+        </main>
+    {% endif %}
+
+    <script src="/static/assignment11_outer.js"> </script>
+
+
+
+{% endblock %}
